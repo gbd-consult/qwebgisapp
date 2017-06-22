@@ -1,0 +1,58 @@
+#InfoBox .x-panel-body {
+    padding: 0;
+}
+
+#InfoBox .x-panel-body h1 {
+    font-size: 14px;
+    font-family: Tahoma, Arial, Verdana, sans-serif;
+    font-weight: 400;
+    padding: 8px;
+    color: #FF6600;
+}
+
+#InfoBox .x-panel-body table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#InfoBox .x-panel-body table tr {
+    border-top: 1px solid #f0f0f0;
+}
+
+#InfoBox .x-panel-body table tr:hover {
+    background-color: #f0f0f0;
+}
+
+#InfoBox .x-panel-body table td,
+#InfoBox .x-panel-body table th {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Verdana, sans-serif;
+    margin: 0;
+    padding: 8px;
+}
+
+#InfoBox .x-panel-body table td.delim {
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+
+#InfoBox .x-panel-body table th {
+    font-weight: 800;
+    background-color: #f0f0f0;
+}
+
+#InfoBox .x-panel-body table td label {
+    font-weight: normal;
+    color: #555;
+}
+
+#InfoBox .x-panel-body table.border td {
+    border-left: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+}
+
+#InfoBox .x-panel-body table.border thead td {
+    background-color: #eee;
+    font-weight: bold;
+}

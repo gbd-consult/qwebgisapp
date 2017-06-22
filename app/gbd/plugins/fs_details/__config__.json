@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "gbd": [
+      "alkis_flurstueck",
+      "infobox"
+    ]
+  }
+}

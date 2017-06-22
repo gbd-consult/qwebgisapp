@@ -1,0 +1,250 @@
+{
+    "xtype": "panel",
+    "title": "Flurstücke",
+    "id": "fsSearchPanel",
+    "bodyStyle": "padding: 0px;",
+    "hidden": false,
+    "layout": "border",
+    "items": [
+        {
+            "xtype": "panel",
+            "layout": "vbox",
+            "id": "fsSearchFormPanel",
+            "height": 370,
+            "region": "north",
+            "collapsible": true,
+            "title": "Suche",
+            "frame": true,
+            "items": [
+                {
+                    "xtype": "form",
+                    "id": "fsSearchForm",
+                    "labelAlign": "top",
+                    "frame": false,
+                    "width": "100%",
+                    "defaults": {
+                        "hideLabel": true,
+                        "width": "96%"
+                    },
+                    "waitMsgTarget": true,
+                    "items": [
+                        {
+                            "xtype": "textfield",
+                            "id": "fsSearchNachname",
+                            "name": "nachnameoderfirma",
+                            "fieldLabel": "Nachname (Firmenname)",
+                            "emptyText": "Nachname (Firma)"
+                        },
+                        {
+                            "xtype": "textfield",
+                            "id": "fsSearchVorname",
+                            "name": "vorname",
+                            "fieldLabel": "Vorname",
+                            "emptyText": "Vorname"
+                        },
+                        {
+                            "xtype": "combo",
+                            "id": "fsSearchGemarkungCombo",
+                            "name": "gemarkungsnummer",
+                            "fieldLabel": "Gemarkung",
+                            "typeAhead": true,
+                            "mode": "local",
+                            "triggerAction": "all",
+                            "emptyText": "Gemarkung",
+                            "selectOnFocus": true
+                        },
+                        {
+                            "xtype": "compositefield",
+                            "items": [
+                                {
+                                    "xtype": "combo",
+                                    "flex": 1,
+                                    "id": "fsSearchStrasseCombo",
+                                    "typeAhead": true,
+                                    "mode": "local",
+                                    "triggerAction": "all",
+                                    "selectOnFocus": true,
+                                    "name": "strasse",
+                                    "fieldLabel": "Straße",
+                                    "emptyText": "Straße"
+                                },
+                                {
+                                    "xtype": "textfield",
+                                    "name": "hausnummer",
+                                    "id": "fsSearchStrasseNr",
+                                    "emptyText": "Nr",
+                                    "width": 40
+                                }
+                            ]
+                        },
+                        {
+                            "xtype": "textfield",
+                            "name": "_fsnumber",
+                            "fieldLabel": "",
+                            "emptyText": "Nummer-Zähler/Nenner"
+                        },
+                        {
+                            "xtype": "compositefield",
+                            "msgTarget": "side",
+                            "fieldLabel": "Fläche",
+                            "items": [
+                                {
+                                    "xtype": "numberfield",
+                                    "name": "minflaeche",
+                                    "flex": 1,
+                                    "emptyText": "von m²",
+                                    "validationEvent": false
+                                },
+                                {
+                                    "xtype": "numberfield",
+                                    "name": "maxflaeche",
+                                    "flex": 1,
+                                    "emptyText": "bis m²",
+                                    "validationEvent": false
+                                }
+                            ]
+                        },
+                        {
+                            "xtype": "panel",
+                            "height": 30,
+                            "layout": "toolbar",
+                            "items": [
+                                {
+                                    "xtype": "button",
+                                    "id": "fsSearchSearchButton",
+                                    "text": "Suchen",
+                                    "width": 75
+                                },
+                                {
+                                    "xtype": "spacer",
+                                    "width": 5
+                                },
+                                {
+                                    "xtype": "button",
+                                    "id": "fsSearchResetButton",
+                                    "text": "Neu",
+                                    "width": 75
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "xtype": "fieldset",
+                    "title": "Räumliche Suche",
+                    "height": 100,
+                    "items": [
+                        {
+                            "xtype": "buttongroup",
+                            "frame": false,
+                            "id": "fsSearchDrawTools",
+                            "defaults": {
+                                "width": 28,
+                                "height": 28,
+                                "tooltipType": "qtip",
+                                "scale": "medium",
+                                "xtype": "button",
+                                "enableToggle": true,
+                                "allowDepress": true,
+                                "toggleSubGroup": "fsSearchDrawTools",
+                                "toggleGroup": "mapTools"
+                            },
+                            "items": [
+                                {
+                                    "icon": "icons/mActionSelectPoint.png",
+                                    "tooltip": "Punktabfrage",
+                                    "id": "fsSearchDrawPoint"
+                                },
+                                {
+                                    "icon": "icons/mActionSelectLine.png",
+                                    "tooltip": "Linienabfrage",
+                                    "id": "fsSearchDrawLine"
+                                },
+                                {
+                                    "icon": "icons/mActionSelectPolygon.png",
+                                    "tooltip": "Polygonabfrage",
+                                    "id": "fsSearchDrawPolygon"
+                                },
+                                {
+                                    "icon": "icons/mActionSelectRectangle.png",
+                                    "tooltip": "Boxabfrage",
+                                    "id": "fsSearchDrawBox"
+                                },
+                                {
+                                    "icon": "icons/mActionSelectRadius.png",
+                                    "tooltip": "Kreisabfrage",
+                                    "id": "fsSearchDrawCircle"
+                                },
+                                {
+                                    "icon": "icons/mActionSelectPan.png",
+                                    "tooltip": "Objekt verschieben",
+                                    "id": "fsSearchDrawDrag"
+                                }
+                            ]
+                        },
+                        {
+                            "xtype": "box",
+                            "html": "",
+                            "id": "fsSearchSpatialInfo"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "xtype": "grid",
+            "id": "fsSearchResultsPanel",
+            "region": "center",
+            "hideHeaders": true,
+            "frame": false,
+            "iconCls": "icon-grid",
+            "viewConfig": {
+                "forceFit": true
+            },
+            "columns": [
+                {
+                    "header": "Aktionen",
+                    "xtype": "actioncolumn",
+                    "width": 40,
+                    "fixed": true,
+                    "items": [
+                        {
+                            "id": "fsSearchResultsSelectAction",
+                            "icon": "icons/mActionSelect.png",
+                            "tooltip": "auswählen"
+                        }
+                    ]
+                },
+                {
+                    "header": "Kennzeichen",
+                    "dataIndex": "kennzeichen"
+                },
+                {
+                    "header": "Gemarkung",
+                    "dataIndex": "gemarkung"
+                }
+            ]
+        }
+    ],
+    "fbar": {
+        "buttonAlign": "left",
+        "items": [
+            {
+                "xtype": "tbtext",
+                "text": "",
+                "id": "fsSearchResultText"
+            },
+            {
+                "xtype": "tbfill"
+            },
+            {
+                "xtype": "button",
+                "scale": "medium",
+                "icon": "icons/mActionSelectAll.png",
+                "tooltipType": "qtip",
+                "tooltip": "Alle auswählen",
+                "id": "fsSearchSelectAllButton"
+            }
+        ]
+    }
+}

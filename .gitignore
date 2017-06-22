@@ -1,0 +1,11 @@
+.idea
+*.iml
+*.pyc
+*.qgs~
+.DS_Store
+QGIS-Web-Client
+open_layers_full
+GeoExt
+NAS_6.0.zip
+config.ini
+._*

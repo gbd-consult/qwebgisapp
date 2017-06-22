@@ -1,0 +1,17 @@
+{
+  "strokeColor": "#FF0000",
+  "strokeOpacity": 0.5,
+  "strokeWidth": 2,
+  "strokeDashstyle": "solid",
+  "fillColor": "#FF0000",
+  "fillOpacity": 0.1,
+  "pointRadius": 15,
+  "pointerEvents": "visiblePainted",
+  "fontColor": "#FF0000",
+  "fontSize": "14px",
+  "fontFamily": "helvetica, sans-serif",
+  "fontWeight": "normal",
+  "labelXOffset": 0,
+  "labelYOffset": -30,
+  "label": "${label}"
+}

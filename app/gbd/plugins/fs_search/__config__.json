@@ -1,0 +1,12 @@
+{
+    "dependencies": {
+        "gbd": [
+            "alkis_flurstueck",
+            "selection",
+            "marker"
+        ]
+    },
+    "js_options": [
+        "expand"
+    ]
+}

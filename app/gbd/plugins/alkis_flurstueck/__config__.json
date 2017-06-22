@@ -1,0 +1,10 @@
+{
+    "dependencies": {
+        "gbd": [
+            "alkis_adresse",
+            "alkis_grundbuch",
+            "alkis_nutzung",
+            "alkis_resolver"
+        ]
+    }
+}
