@@ -9,7 +9,8 @@ Repository to extend QWC functionality on Linux based systems.
 Install base packages, also check apt.lst 
 
 ```
-sudo apt-get install qgis-server postgis apache2 libapache2-mod-fcgid build-essential python-dev libpq-dev libffi-dev zip gdal-bin xvfb libsasl2-dev libldap2-dev libssl-dev
+sudo apt-get install qgis-server postgis apache2 libapache2-mod-fcgid build-essential \
+python-dev libpq-dev libffi-dev zip gdal-bin xvfb libsasl2-dev libldap2-dev libssl-dev
 ```
 
 Install python-pip, also check pip.lst for python modules to install
@@ -85,7 +86,8 @@ sudo python $DIR/app/gbd/bin/setup.py $DIR/config.ini"
 
 ## Building the app on GBD development server
 
-On the dev server, if not yet existing, create a directory for builds, e.g. `/var/gbd/builds`. Clone QWC and qwebgisapp in this dir:
+On the dev server, if not yet existing, create a directory for builds, e.g. 
+`/var/gbd/builds`. Clone QWC and qwebgisapp in this dir:
 
 ```
 cd /var/gbd/builds
