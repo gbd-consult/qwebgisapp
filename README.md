@@ -1,10 +1,10 @@
-# QWC4GBDClients
+# qwebgisapp
 
-Repository to extend QWC functionality
+Repository to extend QWC functionality on Linux based systems.
 
 ## Installation on client server
 
-### Prerequisites
+### Prerequisites for Debian/Ubuntu
 
 Install base packages, also check apt.lst 
 
@@ -38,15 +38,15 @@ Each application package gets an unified ID to make sure that there will be
 no duplicates and conflicts with other client packages.
 
 ```
-sudo mkdir -p /var/gbd/mabi
-cd /var/gbd/mabi
-vim mabi-update.sh
+sudo mkdir -p /var/client
+cd /var/client
+vim update.sh
 ```
 
 execute script with
 
 ```
-sudo bash mabi-update.sh
+sudo bash update.sh
 ```
 
 Next step is to copy content from a template or an existing config.ini 
@@ -74,7 +74,7 @@ After system changes it is necessary to build a new package on the server first 
 update the package on the client.
 
 ```
-sudo bash mabi_update.sh
+sudo bash update.sh
 ```
 
 After minor changes in the config.ini it is only necessary to start a new setup.
@@ -85,28 +85,28 @@ sudo python $DIR/app/gbd/bin/setup.py $DIR/config.ini"
 
 ## Building the app on GBD development server
 
-On the dev server, if not yet existing, create a directory for builds, e.g. `/var/gbd/builds`. Clone QWC and QWC4GBDClients in this dir:
+On the dev server, if not yet existing, create a directory for builds, e.g. `/var/gbd/builds`. Clone QWC and qwebgisapp in this dir:
 
 ```
 cd /var/gbd/builds
 git clone https://github.com/gbd-consult/QGIS-Web-Client
-git clone https://github.com/gbd-consult/QWC4GBDClients
+git clone https://github.com/gbd-consult/qwebgisapp
 ```
 
 create an ini file and adapt APPID and other content if necessary. You can copy the content from an existing file:
 
 ```
 cd /var/gbd/builds
-cp misa.ini mabi.ini
+cp client1.ini client2.ini
 ```
 
 Next step is to run the build script:
 
 ```
-python /var/gbd/builds/QWC4GBDClients/build.py path-to-config path-to-build dir
+python /var/gbd/builds/qwebgisapp/build.py path-to-config path-to-build dir
 
 # Example for mabi
-python /var/gbd/builds/QWC4GBDClients/build.py /var/gbd/builds/mabi.ini /var/gbd/builds
+python /var/gbd/builds/qwebgisapp/build.py /var/gbd/builds/client1.ini /var/client/builds
 ```
 
 This creates two files in the build dir:
@@ -131,3 +131,8 @@ sudo python app/gbd/bin/setup.py config.ini
 ### Updates
 
 Build the zip file as above, upload it to the client (replacing any existing zips) and re-run the "Installation" step.
+
+
+## License
+
+This program is free software. It is licensed under the MIT License, see LICENSE for further information.
