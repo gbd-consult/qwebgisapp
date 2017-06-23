@@ -135,4 +135,4 @@ Build the zip file as above, upload it to the client (replacing any existing zip
 
 ## License
 
-This program is free software. It is licensed under the MIT License, see LICENSE for further information.
+This program is free software. It is licensed under the the [MIT License](http://www.opensource.org/licenses/MIT).
