@@ -1,6 +1,6 @@
 # qwebgisapp
 
-Repository to extend QWC functionality on Linux based systems.
+Application to extend QWC functionality on Linux based systems.
 
 ## Installation on client server
 
