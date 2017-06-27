@@ -107,7 +107,7 @@ Next step is to run the build script:
 ```
 python /var/gbd/builds/qwebgisapp/build.py path-to-config path-to-build dir
 
-# Example for mabi
+# Example
 python /var/gbd/builds/qwebgisapp/build.py /var/gbd/builds/client1.ini /var/client/builds
 ```
 
