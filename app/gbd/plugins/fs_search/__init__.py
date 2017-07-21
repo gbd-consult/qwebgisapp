@@ -104,6 +104,13 @@ class Plugin(plugin.Base):
                     sort=['gemarkung', 'flurstueckskennzeichen']
             ))
             log.info('found', len(rs))
+
+            if 'geomonly' in request.args:
+                rs = [
+                    {'gml_id': r['gml_id'], 'wkt_geometry': r['wkt_geometry']}
+                    for r in rs
+                ]
+
             return rs
 
         if cmd == 'count':

@@ -43,7 +43,7 @@ def list_strasse_all():
     for r in rs:
         if r['strasse'] not in str2gem:
             str2gem[r['strasse']] = set()
-        str2gem[r['strasse']].add(int(r['gemarkung_id']))
+        str2gem[r['strasse']].add(int(r['gemarkung_id'] or 0))
 
     ls = []
     for strasse, gms in str2gem.iteritems():
@@ -88,6 +88,8 @@ def _add_fsnumber(sel, val):
 
 
 def find(params, columns=None, limit=None, sort=None):
+    srid = config.get('alkis.crs').split(':')[1]
+
     sel = db.select_statement()
     sel.add_table(index.main_index, 'fs')
     joins = 0
@@ -152,10 +154,18 @@ def find(params, columns=None, limit=None, sort=None):
             if v.startswith((chr(0), chr(1), '0')):
                 expr = '%s'
             else:
-                srid = config.get('alkis.crs').split(':')[1]
                 expr = _f('ST_GeomFromText(%s,{srid})')
             verb = 'ST_Within' if k == 'bounds_within' else 'ST_Intersects'
             sel.add_where([_f('{verb}(wkb_geometry,{expr})'), v])
+
+        elif k == 'x':
+            try:
+                x = float(params['x'])
+                y = float(params['y'])
+            except (KeyError, ValueError):
+                x = y = 0
+            point = _f("ST_GeomFromText('POINT({x} {y})',{srid})", x, y)
+            sel.add_where(_f('ST_Contains(wkb_geometry,{point})'))
 
     if joins:
         sel.distinct(True)
