@@ -103,6 +103,7 @@ def index_gebaeude():
             gml_id,
             wkb_geometry
         FROM ax_flurstueck
+        WHERE endet IS NULL
     '''))
 
     rs = db.select('''
@@ -130,6 +131,7 @@ def index_gebaeude():
             baujahr,
             wkb_geometry
         FROM ax_gebaeude
+        WHERE endet IS NULL
     ''')
 
     gebs = []
@@ -242,13 +244,13 @@ def index_addr():
         return r['land'], r['regierungsbezirk'], r['kreis'], r['gemeinde'], r['lage']
 
     lage_catalog = {}
-    for r in db.select('SELECT * FROM ax_lagebezeichnungkatalogeintrag'):
+    for r in db.select('SELECT * FROM ax_lagebezeichnungkatalogeintrag WHERE endet IS NULL'):
         lage_catalog[_key(r)] = [r['gml_id'], r['schluesselgesamt'], r['bezeichnung']]
 
     lage = {}
 
     for tab in _lage_tables:
-        for la in db.select(_f('SELECT * FROM {tab}')):
+        for la in db.select(_f('SELECT * FROM {tab} WHERE endet IS NULL')):
             if la['unverschluesselt']:
                 la['strasse'] = la['unverschluesselt']
             else:
@@ -283,6 +285,7 @@ def index_addr():
             ST_X(ST_Centroid(wkb_geometry)) AS x,
             ST_Y(ST_Centroid(wkb_geometry)) AS y
         FROM ax_flurstueck
+        WHERE endet IS NULL        
     ''')
 
     with util.ProgressIndicator('address index', db.count('ax_flurstueck')) as pi:
@@ -318,7 +321,9 @@ def index_addr():
             ST_X(ST_Centroid(wkb_geometry)) AS x,
             ST_Y(ST_Centroid(wkb_geometry)) AS y
         FROM ap_pto
-        WHERE art='HNR'
+        WHERE 
+            art='HNR' 
+            AND endet IS NULL
     '''))
 
     for r in rs:

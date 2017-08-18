@@ -256,9 +256,8 @@ def _create():
             ST_X(ST_Centroid(wkb_geometry)) AS x,
             ST_Y(ST_Centroid(wkb_geometry)) AS y
         FROM ax_flurstueck
+        WHERE endet IS NULL
     '''
-    # ignore historical FS
-    fs_sql += ' WHERE endet IS NULL'
 
     excl = config.get_list('alkis.exclude_gemarkung')
     if excl:

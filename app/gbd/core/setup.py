@@ -133,4 +133,5 @@ def main(options):
     setup_vhost()
     copy_qgis_options()
     setup_plugins(options)
+    db.disconnect()
     log.info('done in %.2f sec' % (time.time() - ts))

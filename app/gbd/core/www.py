@@ -351,6 +351,10 @@ def app(environ, start_response):
 
         response.headers.append(('Content-Length', str(len(response.body))))
 
+        for key in config.keys('www.http_header'):
+            h = str(config.get(key)).split(':', 1)
+            response.headers.append(tuple(h))
+
         log.debug('RESPONSE', response.status)
 
         start_response(response.status, response.headers)

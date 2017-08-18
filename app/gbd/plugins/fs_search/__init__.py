@@ -70,6 +70,8 @@ class Plugin(plugin.Base):
                 if v.strip() and v.strip() != '0':
                     params[k] = v
             for r in flurstueck.find(params, limit=1):
+                if not enabled_owner:
+                    r.pop('buchung', None)
                 return r
 
         if cmd == 'gemarkungen':

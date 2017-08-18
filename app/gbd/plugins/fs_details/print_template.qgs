@@ -53,7 +53,7 @@
           <prop k="style" v="solid"/>
         </layer>
       </symbol>
-      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="${flurstueck['gemeinde']}&#xa;Flur: ${flurstueck['flurnummer']} - Flustück: ${flurstueck['zaehler']} ${'/ ' + flurstueck['nenner'] if flurstueck['nenner'] else ''}" htmlState="0" halign="1">
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="${flurstueck['gemeinde'] or ''}&#xa;Flustück: ${flurstueck['zaehler']} ${'/ ' + flurstueck['nenner'] if flurstueck['nenner'] else ''}" htmlState="0" halign="1">
         <LabelFont description="Arial,10,-1,5,75,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
         <ComposerItem pagey="273.361" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="15.2287" y="273.361" visibility="1" zValue="10" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="99.2886" outlineWidth="0.3" excludeFromExports="0" uuid="{de303ab6-6366-4670-b37a-5c0b99cd3651}" height="10.0731" itemRotation="0" frame="false" pagex="15.2287">

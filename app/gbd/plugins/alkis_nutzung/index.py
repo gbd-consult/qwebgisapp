@@ -44,7 +44,9 @@ def create_fsx_temp():
                 ST_Area(wkb_geometry),
                 amtlicheflaeche,
                 wkb_geometry
-            FROM ax_flurstueck;
+            FROM ax_flurstueck
+            WHERE endet IS NULL
+            ;
 
         DROP INDEX IF EXISTS {schema}.nu_fsx_gist;
         CREATE INDEX nu_fsx_gist ON {fsx_temp} USING GIST(wkb_geometry);
@@ -79,7 +81,7 @@ def create_all_index():
         if table not in tables:
             continue
 
-        rs = db.select(_f('SELECT * FROM {table}'))
+        rs = db.select(_f('SELECT * FROM {table} WHERE endet IS NULL'))
         for r in rs:
             a = resolver.attributes(table, r)
             k = resolver.nutzung_key(type_id, a) or {'key': type, 'key_id': type_id, 'key_label': 'Typ'}

@@ -93,6 +93,7 @@ def find(params, columns=None, limit=None, sort=None):
     sel = db.select_statement()
     sel.add_table(index.main_index, 'fs')
     joins = 0
+    has_name = False
 
     if columns:
         for col in columns:
@@ -132,16 +133,19 @@ def find(params, columns=None, limit=None, sort=None):
             adresse.add_filter(sel, 'addr', util.pick(params, ['strasse', 'hausnummer']))
             joins += 1
 
-        elif k == 'nachnameoderfirma':
+        elif k in ('vorname', 'nachnameoderfirma'):
 
-            sel.add_table(index.name_index, 'na')
-            sel.add_where('na.fs_id = fs.gml_id')
-            sel.add_where(db.star_like('na.nachname', v))
+            if not has_name:
+                sel.add_table(index.name_index, 'na')
+                sel.add_where('na.fs_id = fs.gml_id')
+                joins += 1
+                has_name = True
 
-            if 'vorname' in params:
-                sel.add_where(db.star_like('na.vorname', params['vorname']))
+            if k == 'nachnameoderfirma':
+                sel.add_where(db.star_like('na.nachname', v))
 
-            joins += 1
+            if k == 'vorname':
+                sel.add_where(db.star_like('na.vorname', v))
 
         elif k == 'minflaeche':
             sel.add_where(['amtlicheflaeche >= %s', v])

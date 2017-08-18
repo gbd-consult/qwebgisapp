@@ -23,6 +23,7 @@ def get_all_person():
             hausnummer,
             telefon
         FROM ax_anschrift
+        WHERE endet IS NULL
     ''')
 
     addr = dict((r['gml_id'], util.strip_none(r)) for r in rs)
@@ -44,6 +45,7 @@ def get_all_person():
             vorname,
             hat
         FROM ax_person
+        WHERE endet IS NULL        
     ''')
 
     for r in rs:
@@ -61,7 +63,7 @@ def get_all_buchungsblatt():
     persons = get_all_person()
     blatts = {}
 
-    for r in db.select('SELECT * FROM ax_buchungsblatt'):
+    for r in db.select('SELECT * FROM ax_buchungsblatt WHERE endet IS NULL'):
         bb = {
             'gml_id': r['gml_id'],
             'buchungsblattkennzeichen': r['buchungsblattkennzeichen'],
@@ -72,7 +74,7 @@ def get_all_buchungsblatt():
         bb.update(resolver.attributes('ax_buchungsblatt', r))
         blatts[r['gml_id']] = util.strip_none(bb)
 
-    for r in db.select('SELECT * FROM ax_namensnummer'):
+    for r in db.select('SELECT * FROM ax_namensnummer WHERE endet IS NULL'):
         if r['istbestandteilvon'] in blatts:
             ow = {
                 'anteil': _anteil(r),
@@ -90,7 +92,7 @@ def get_all_buchungsstelle():
     blatt = get_all_buchungsblatt()
     stelle = {}
 
-    for r in db.select('SELECT * FROM ax_buchungsstelle'):
+    for r in db.select('SELECT * FROM ax_buchungsstelle WHERE endet IS NULL'):
         bb = blatt.get(r['istbestandteilvon'], {})
         st = {
             'gml_id': r['gml_id'],

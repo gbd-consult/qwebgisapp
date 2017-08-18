@@ -34,6 +34,11 @@ class User(object):
 def ldap_login(login, password):
     """Given a login and password, return a tuple (user record or None, error or None)."""
 
+    def _utf8(s):
+        if isinstance(s, str):
+            s = s.decode('utf8')
+        return unicode(s).encode('utf8')
+
     import ldap, urlparse
 
     url = config.get('ldap.url')
@@ -52,10 +57,10 @@ def ldap_login(login, password):
 
     if config.get('ldap.admin_user'):
         ld.simple_bind_s(
-                config.get('ldap.admin_user'),
-                config.get('ldap.admin_password'))
+                _utf8(config.get('ldap.admin_user')),
+                _utf8(config.get('ldap.admin_password')))
 
-    ls = ld.search_s(base, ldap.SCOPE_SUBTREE, prop + '=' + login)
+    ls = ld.search_s(base, ldap.SCOPE_SUBTREE, _utf8(prop) + '=' + _utf8(login))
     if not ls:
         return None, _f('not found: {prop}={login}')
 
@@ -76,7 +81,7 @@ def ldap_login(login, password):
     udata = {'login': login, 'roles': [], 'name': login}
     for key in config.keys('ldap.login'):
         role, ldap_filter = config.get_list(key, 1)
-        ls = ld.search_s(base, ldap.SCOPE_SUBTREE, ldap_filter)
+        ls = ld.search_s(base, ldap.SCOPE_SUBTREE, _utf8(ldap_filter))
         for cn, data in ls:
             if cn == user_cn:
                 log.debug('found role', role, ldap_filter)
@@ -90,7 +95,7 @@ def ldap_login(login, password):
         return None, _f('no roles for {login}')
 
     try:
-        ld.simple_bind_s(user_cn, password)
+        ld.simple_bind_s(_utf8(user_cn), _utf8(password))
     except ldap.INVALID_CREDENTIALS:
         return None, 'wrong password'
 
