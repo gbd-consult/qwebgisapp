@@ -121,7 +121,7 @@ This creates two files in the build dir:
 Upload `zip` and `update.sh` in a specific directory on the client. Go to this dir and run the `appName-update.sh`
 
 ```
-sudo bash appName-update.sh
+sudo bash appName-update.sh install
 ```
 
 This creates the `/app` dir and the `config.ini`. Edit the config to reflect the local settings and run the setup script:
@@ -132,7 +132,10 @@ sudo python app/gbd/bin/setup.py config.ini
 
 ### Updates
 
-Build the zip file as above, upload it to the client (replacing any existing zips) and re-run the "Installation" step.
+Build the zip file as above, upload it to the client (replacing any existing zips) and re-run the __Installation__ step but this time run the script without the _install_ argument
+``
+sudo bash appName-update.sh
+```
 
 
 ## License
