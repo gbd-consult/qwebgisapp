@@ -29,7 +29,7 @@ def main(config_path, build_root):
     app_id = cf.get('app.id')
     app_name = cf.get('app.name')
     target = cwd + '/' + app_id
-    src = cwd + '/QWC4GBDClients/app'
+    src = cwd + '/qwebgisapp/app'
     dst = target + '/app'
     
     sh.runl(util.f("""
