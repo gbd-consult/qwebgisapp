@@ -133,7 +133,7 @@ sudo python app/gbd/bin/setup.py config.ini
 ### Updates
 
 Build the zip file as above, upload it to the client (replacing any existing zips) and re-run the __Installation__ step but this time run the script without the _install_ argument
-``
+```
 sudo bash appName-update.sh
 ```
 
