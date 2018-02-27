@@ -22,8 +22,8 @@ def main(config_path, build_root):
         print 'git clone https://github.com/gbd-consult/QGIS-Web-Client'
         return
 
-    if not os.path.exists(cwd + '/QWC4GBDClients'):
-        print 'ERROR: QWC4GBDClients not found'
+    if not os.path.exists(cwd + '/qwebgisapp'):
+        print 'ERROR: qwebgisapp not found'
         return
 
     app_id = cf.get('app.id')
